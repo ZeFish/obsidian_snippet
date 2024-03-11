@@ -4,14 +4,14 @@ name: eInk
 id: eInk
 settings:
 	-
-			id: garden_eink_geometric
-			title: Geometric Precision Font Rendering
-			description: 
-			type: class-toggle
-			default: true
+		id: garden_eink_geometric
+		title: Geometric Precision Font Rendering
+		description: 
+		type: class-toggle
+		default: true
 	-
 		id: garden_eink_font_face
-		title: Font face
+		title: Bookerly Font face
 		description: 
 		type: class-toggle
 		default: true

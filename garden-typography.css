@@ -1,0 +1,173 @@
+/* @settings
+
+name: Garden Snippet - Typography
+id: garden-typography
+settings:
+	-
+			id: garden_typography_geometric
+			title: Geometric Precision Font Rendering
+			description: 
+			type: class-toggle
+			default: true
+	-
+		id: line-height-normal
+		title: Line height
+		description: Line height default
+		type: variable-number
+		default: 1.583
+		format: em
+	- 
+        id: font-ratio
+        title: Font size scale ratio
+        description: Line height default
+        type: variable-number
+		default: 1.38
+	- 
+        id: letter-spacing
+        title: Letter spacing
+        description: 
+        type: variable-number
+		default: 0.02
+		format: em
+    - 
+        id: justify
+        title: Justify
+        description: Justify and add hyphenation to text in preview mode
+        type: class-toggle
+    - 
+        id: fluid
+        title: Fluid scale
+        description: Fluid font size scale based on https://utopia.fyi
+        type: class-toggle
+*/
+
+
+body {	
+	text-rendering: optimizeLegibility;
+	font-feature-settings: "kern" !important;
+	font-optical-sizing: auto;
+
+	/* Line heights */
+	--line-height-normal: 1.583em;
+	--line-height-tight: 1.3;
+	--font-ratio: 1.5;  
+	--letter-spacing: 0.02em;
+	
+
+	/* Paragraphs */
+	--p-spacing: var(--line-height-normal);
+	--p-spacing-empty: 0rem;
+	
+	--h1-size: calc(var(--font-text-size) * pow(var(--font-ratio), 3));
+	--h2-size: calc(var(--font-text-size) * pow(var(--font-ratio), 3));
+	--h3-size: calc(var(--font-text-size) * pow(var(--font-ratio), 2));
+	--h4-size: calc(var(--font-text-size) * pow(var(--font-ratio), 1));
+	--h5-size: calc(var(--font-text-size) * pow(var(--font-ratio), 1));
+	--h6-size: calc(var(--font-text-size) * pow(var(--font-ratio), 1));
+
+	--font-smallest: calc(var(--font-text-size) * pow(var(--font-ratio), -1.5));
+	--font-smaller: calc(var(--font-text-size) * pow(var(--font-ratio), -1));
+	--font-small: calc(var(--font-text-size) * pow(var(--font-ratio), -0.5));
+}
+
+
+
+
+/* ============================================= */
+/* Geometric Precision Text Rendering */
+/* ============================================= */
+.garden_typography_geometric {
+	text-rendering: geometricPrecision !important;
+}
+
+
+
+/* ============================================= */
+/* Fluid scale system */
+/* ============================================= */
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1240,20,1.25,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+:root {
+	--step--3: clamp(0.5787rem, 0.5574rem + 0.1066vi, 0.64rem);
+	--step--2: clamp(0.6944rem, 0.6577rem + 0.1836vi, 0.8rem);
+	--step--1: clamp(0.8333rem, 0.7754rem + 0.2899vi, 1rem);
+	--step-0: clamp(1rem, 0.913rem + 0.4348vi, 1.25rem);
+	--step-1: clamp(1.2rem, 1.0739rem + 0.6304vi, 1.5625rem);
+	--step-2: clamp(1.44rem, 1.2615rem + 0.8924vi, 1.9531rem);
+	--step-3: clamp(1.728rem, 1.4799rem + 1.2407vi, 2.4414rem);
+	--step-4: clamp(2.0736rem, 1.7334rem + 1.7011vi, 3.0518rem);
+}
+.fluid {
+	--font-text-size: var(--step-0) !important;
+	--font-smallest: var(--step--3);
+	--font-smaller: var(--step--2);
+	--font-small: var(--step--1);
+
+	--h1-size: var(--step-4);
+	--h2-size: var(--step-4);
+	--h3-size: var(--step-3);
+	--h4-size: var(--step-2);
+	--h5-size: var(--step-1);
+	--h6-size: var(--step-0);
+}
+
+
+
+
+/* ============================================= */
+/* Letter Spacing */
+/* ============================================= */
+.markdown-source-view, .markdown-reading-view {
+	letter-spacing: var(--letter-spacing);
+}
+
+
+
+
+/* ============================================= */
+/* Title Line Height */
+/* ============================================= */
+.inline-title, 
+.markdown-reading-view h1,
+.markdown-reading-view h2 { line-height: 1em; }
+.markdown-reading-view h3 { line-height: 1.25em; }
+.markdown-reading-view h4 { line-height: 1.5em; }
+.markdown-reading-view h5,
+.markdown-reading-view h6,
+.markdown-reading-view .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page) { 
+	line-height: var(--line-height-normal); 
+}
+
+.inline-title, 
+.markdown-reading-view h1,
+.markdown-reading-view h2,
+.markdown-reading-view h3,
+.markdown-reading-view h4,
+.markdown-reading-view h5,
+.markdown-reading-view h6,
+.markdown-reading-view .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page) {
+    margin: calc(var(--line-height-normal) / 2) 0;
+}
+
+
+
+
+/* ============================================= */
+/* Justify Part */
+/* ============================================= */
+.justify .markdown-reading-view .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-video) {
+	text-align: justify;
+	text-align-last: left;
+	text-wrap: pretty;
+	hyphens: auto;
+	
+}
+	.justify .markdown-reading-view .el-h4 + .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page),
+	.justify .markdown-reading-view .el-h5 + .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page),
+	.justify .markdown-reading-view .el-h6 + .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page),
+	.justify .markdown-reading-view .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page) + .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page) {
+		margin-top:calc(var(--line-height-normal) * -1);
+	}
+	.justify .markdown-reading-view .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page) + .el-p:not(.el-embed-image):not(.el-embed-audio):not(.el-embed-page) {
+		text-indent: var(--line-height-normal);
+	}
+	.justify .markdown-reading-view br + br + br { display:none; }

@@ -1,0 +1,76 @@
+/* @settings
+
+name: Garden Snippet - Helper
+id: garden-helper
+settings:
+	- 
+			id: remove_white_space_on_top
+			title: Top space remover
+			description: Remove the big white space on top of note
+			type: class-toggle
+			default: true
+    - 
+        id: minimize-img
+        title: Minimize images in editor view
+        description: Gives your more place to focus on text.
+        type: class-toggle
+		default: true
+	- 
+        id: .link_no_decoration
+        title: Remove link underline
+        description:
+        type: class-toggle
+		default: false
+*/
+
+
+
+/* ============================================= */
+/* Remove white space on top */
+/* ============================================= */
+.remove_white_space_on_top .cm-sizer {
+	padding-top:0px !important;
+}
+
+
+
+
+/* ============================================= */
+/* Minimize Images in source view */
+/* ============================================= */
+.minimize-img .markdown-source-view .image-embed {
+	background: var(--background-secondary);
+	padding: var(--size-4-4);
+	border-radius: var(--size-4-2);
+	border: 1px solid var(--background-modifier-border);
+	text-align:center;
+}
+	.minimize-img .markdown-source-view .image-embed img {
+		height:50px;
+		max-width: 50px !important;
+		object-fit: cover;
+		mix-blend-mode: multiply;
+		opacity:0.8;
+	}
+	.minimize-img .theme-dark .markdown-source-view .image-embed img {
+		mix-blend-mode: screen;
+		opacity:0.5;
+	}
+	.minimize-img .markdown-source-view .image-embed img:hover {
+		mix-blend-mode: normal;
+		opacity:1;
+		height: fit-content;
+		max-width: 100% !important;
+	}
+
+
+
+/* ============================================= */
+/* Remove link underline decoration */
+/* ============================================= */
+.link_no_decoration .markdown-reading-view a {
+	text-decoration:none !important;
+}
+.link_no_decoration .markdown-reading-view a:hover {
+	text-decoration:none !important;
+}
